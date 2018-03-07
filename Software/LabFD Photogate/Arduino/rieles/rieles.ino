@@ -7,7 +7,7 @@ Adafruit_PCD8544 display = Adafruit_PCD8544(8, 7, 6, 5, 4);
 int IRD1=2, IRD2 = 3, IRE1=12, IRE2=11;
 float evento1=0, evento2 =0, duracion=0;
 boolean estadoc1, estadoc2, estadoc01=0, estadoc02=0; 
-String msj;
+String mensaje;
 int m=0,n=0,c=0;
 
 void setup() {
@@ -50,21 +50,21 @@ void loop() {
       {
         if(n==0){
             evento1=millis();
-            msj="A";//msj sirve para identificar las puertas al comunicarse con procesing
-            Serial.println(msj);
+            mensaje="A";//msj sirve para identificar las puertas al comunicarse con procesing
+            Serial.println(mensaje);
             n++;
             }else if(n==1){
                       evento2=millis();
                       duracion=(evento2-evento1);
-                      msj="A";
-                      msj.concat(duracion);
+                      mensaje="A";
+                      mensaje.concat(duracion);
                       display.setCursor(10,8);
                       display.setTextColor(BLACK, WHITE);
                       display.println(duracion/1000.000);
                       display.setCursor(10,16);
                       display.println(0.1/(duracion/1000.000));//0.1m largo de la bandera
                       display.display();
-                      Serial.println(msj);
+                      Serial.println(mensaje);
                       n=0;
             }
                   
@@ -74,21 +74,21 @@ void loop() {
       {
         if(m==0){
             evento1=millis();
-            msj="B";
-            Serial.println(msj);
+            mensaje="B";
+            Serial.println(mensaje);
             m++;
             }else if(m==1){
                       evento2=millis();
                       duracion=evento2-evento1;
-                      msj="B";
-                      msj.concat(duracion);
+                      mensaje="B";
+                      mensaje.concat(duracion);
                       display.setCursor(10,32);
                       display.setTextColor(BLACK, WHITE);
                       display.println(duracion/1000.000);
                       display.setCursor(10,40);
                       display.println(0.1/(duracion/1000.000));
                       display.display();
-                      Serial.println(msj);
+                      Serial.println(mensaje);
                       m=0;
             }
                   
