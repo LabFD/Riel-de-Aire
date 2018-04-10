@@ -1,10 +1,14 @@
- import processing.serial.*;
+import processing.serial.*;
 import co.jimezam.util.Dialogo;
+
 String[] serialPorts;
 Serial myPort;
 float tiempo,tiempo1,tiempo2,largob=0.1,V1=0,V2=0;
+
 int n=0,m=0;
-String SHIT,str2="1000";
+
+String MSJ,str2="1000";
+
 PImage bg,cuadro,b3s, boton2,cuadrosel,b3,cuadrob;
 
 void setup() 
@@ -41,17 +45,17 @@ void draw()
 sombrear ();
      while (myPort.available() > 0) 
      {
-       SHIT=myPort.readString();
+       MSJ=myPort.readString();
        fill(0);
-       char a=SHIT.charAt(0);
-       SHIT=SHIT.substring(1);
+       char a=MSJ.charAt(0);
+       MSJ=MSJ.substring(1);
        if (a=='A')
        {
            image(cuadrosel, 32, 95);
            textSize(26);
            if(m==1){
            image(cuadro,32,95);
-           tiempo= parseInt(SHIT);
+           tiempo= parseInt(MSJ);
            tiempo1=tiempo/1000;
            V1=largob/tiempo1;
            text(tiempo1,60,150);text(V1,60,220);m=0;}else{m++;}
@@ -64,7 +68,7 @@ sombrear ();
              textSize(26);
              if(n==1){
              image(cuadro, 221, 95);
-             tiempo= parseInt(SHIT);
+             tiempo= parseInt(MSJ);
              tiempo2=tiempo/1000;
              V2=largob/tiempo2;
              text(tiempo2,249,150);text(V2,249,220);n=0;}else{n++;}
